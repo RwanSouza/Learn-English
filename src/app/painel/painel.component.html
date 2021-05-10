@@ -12,11 +12,16 @@
 
     <div class="row">
       <div class="col">
-        <h6>Traduza a frase:</h6>
-        <p>How are you</p>
+        <h6>{{instruction}}</h6>
+        <p>{{sentences[0].phraseEng}}</p>
+        <p>{{response}}</p>
 
         <div class="form-group">
-          <textarea class="form-control"  rows="3"></textarea>
+          <textarea
+            class="form-control"
+            rows="3"
+            (input)="updateResponse($event)"
+            ></textarea>
         </div>
       </div>
     </div>
@@ -24,7 +29,10 @@
     <div class="row">
       <div class="col">
         <div class="d-flex flex-row-reverse">
-          <button type="button" class="btn btn-primary">Primary</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="verifyResponse()" >Verify</button>
         </div>
       </div>
     </div>
