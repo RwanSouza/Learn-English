@@ -2,11 +2,11 @@
   <div class="jumbotron">
     <div class="row">
       <div class="col-sm-6">
-      <app-progresso [progress]="progres" ></app-progresso>
+      <app-progresso [progress]="progress" ></app-progresso>
       </div>
 
       <div class="col-sm-6">
-        <app-tentativas></app-tentativas>
+        <app-tentativas [attempts]="attempts" ></app-tentativas>
       </div>
     </div>
 
@@ -21,6 +21,7 @@
             class="form-control"
             rows="3"
             (input)="updateResponse($event)"
+            [value]= "response"
             ></textarea>
         </div>
       </div>
