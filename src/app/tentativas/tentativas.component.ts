@@ -18,8 +18,6 @@ export class TentativasComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges() {
-    console.log("Tentativas recebidas do painel", this.attempts);
-
     if (this.attempts !== this.hearts.length) {
       this.hearts[this.attempts].full = false;
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Sentences } from "../shared/sentence.model";
 import { Phrases } from "./phrase.mock";
 
@@ -16,6 +16,8 @@ export class PainelComponent implements OnInit {
   public attempts: number = 3;
   public progress: number = 0;
   public roundPhrase: Sentences;
+
+  @Output() public endGame: EventEmitter<string> = new EventEmitter();
 
   constructor() {
     this.updateRound();
@@ -35,13 +37,17 @@ export class PainelComponent implements OnInit {
       //Progresso
       this.progress = this.progress + 100 / this.sentences.length;
 
+      if (this.round === 4) {
+        this.endGame.emit("Victory");
+      }
+
       // Atualiza frase
       this.updateRound();
     } else {
       this.attempts--;
 
       if (this.attempts === -1) {
-        alert("Você perdeu seus 3 corações");
+        this.endGame.emit("Lose");
       }
     }
   }

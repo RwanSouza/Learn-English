@@ -1,2 +1,27 @@
 <app-topo></app-topo>
-<app-painel></app-painel>
+
+<div *ngIf="gameProgress; else completeGame" >
+  <app-painel (endGame)="endGame($event)" ></app-painel>
+</div>
+
+<ng-template #completeGame>
+  <div *ngIf="typeEnd === 'Lose'; else completeGameVictory" class="container" style="margin-top: 50px;">
+    <div class="row">
+      <div class="col">
+        <h3 style="color: red">End Game, You lose.</h3>
+        <button class="btn btn-primary" (click)="restartGame()" >Restart</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #completeGameVictory>
+  <div class="container" style="margin-top: 50px;">
+    <div class="row">
+      <div class="col">
+        <h3 style="color: green">End Game, You win.</h3>
+        <button class="btn btn-primary" (click)="restartGame()" >Restart</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
